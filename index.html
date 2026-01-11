@@ -8,22 +8,24 @@
     <link rel="stylesheet" href="utility.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="left border">
-        <div class="home">
-          <div class="home">
-            <div class="logo">
-              <img src="logo_rect.svg" alt="Spotify Logo">
-            </div>
-            <ul>
-              <li><img src="home.svg" alt="home" />Home</li>
-              <li><img src="search.svg" alt="search" />Search</li>
-            </ul>
+    <div class="container flex bg-grey">
+      <div class="left bg-black">
+        <div class="home bg-grey rounded m-1 p-1">
+          <div class="logo">
+            <img class="invert" src="/img/logo.svg" alt="Spotify Logo" />
           </div>
-          <div class="library"></div>
+          <ul>
+            <li><img src="home.svg" alt="home" />Home</li>
+            <li><img src="search.svg" alt="search" />Search</li>
+          </ul>
         </div>
 
-        <div class="library"></div>
+        <div class="library bg-grey rounded m-1 p-1">
+          <div class="heading">
+            <img src="library.svg" alt="" />
+            <h2>Your library</h2>
+          </div>
+        </div>
       </div>
 
       <div class="right border"></div>
