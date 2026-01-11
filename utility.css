@@ -1,41 +1,61 @@
-.border{
-    border: 0.5px solid white;
+.border {
+  border: 0.5px solid white;
 }
 
-.flex{
-    display: flex;
-
+.flex {
+  display: flex;
 }
 
-.justify-center{
-    justify-content: center;
+.justify-center {
+  justify-content: center;
 }
 
-.items-center{
-    align-items: center;
+.items-center {
+  align-items: center;
 }
 
-.invert{
-    filter: invert(1);
+.invert {
+  filter: invert(1);
 }
 
-.bg-black{
-    background-color: black;
-    color: white;
+.bg-black {
+  background-color: black;
+  color: white;
 }
 
-.bg-grey{
-    background-color: #121212;
+.bg-grey {
+  background-color: #121212;
 }
 
-.rounded{
-    border-radius: 7px;
+.rounded {
+  border-radius: 7px;
 }
 
-.m-1{
-    margin: 5px;
+.m-1 {
+  margin: 5px;
 }
 
-.p-1{
-    padding: 10px;
+.p-1 {
+  padding: 10px;
+}
+
+.titleText {
+  padding-top: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "CircularSp", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.songText {
+  padding-top: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #b3b3b3;
+  font-family: "CircularSp", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.songImg {
+  border-radius: 5px;
+  width: 150px;
+  height: 150px;
 }
