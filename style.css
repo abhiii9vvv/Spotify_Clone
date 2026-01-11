@@ -1,0 +1,22 @@
+body{
+    background-color: black;
+    color: white;
+}
+
+.left{
+    width: 25vw;
+}
+.right{
+    width: 75vw;
+}
+
+.container{
+    display: flex;
+}
+
+.home ul li{
+    gap: 15px;
+    display: flex;
+    list-style: none;
+    width: 14px;
+}
