@@ -80,7 +80,7 @@ body {
   justify-content: space-between;
 }
 .header > * {
-  padding: 20px;
+  padding: 10px;
 }
 .nav {
   display: flex;
@@ -135,21 +135,80 @@ body {
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.1s ease;
-  box-shadow: 0 8px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
 }
 
-.play-button img{
-    width: 20px;
-    height: 20px;
+.play-button img {
+  width: 20px;
+  height: 20px;
 }
 
-.image-container:hover .play-button{
-    opacity: 1;
-    transform: scale(1.05);
+.card:hover .play-button {
+  opacity: 1;
 }
 
-.play-button:hover{
-    
-    transform: scale(1.1);
-    background-color: #11d857;
+.play-button:hover {
+  transform: scale(1.05);
+  background-color: #11d857;
+}
+
+.artistCard {
+  padding: 16px;
+  margin: 3px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.artistCard:hover {
+  background-color: #4c4c4c;
+}
+
+.artistCard .image-container {
+  padding: 10px;
+}
+
+.artistCard .play-button {
+  opacity: 0;
+}
+
+.artistCard .play-button img {
+  width: 16px;
+  height: 16px;
+}
+
+.artistCard img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.artistContainer {
+  justify-content: space-between;
+  display: flex;
+}
+
+.artistContainer h2 {
+  text-align: center;
+  padding-top: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "CircularSp", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.artistContainer p {
+  padding-top: 4px;
+  font-weight: 700;
+  color: #b3b3b3;
+  font-size: 12px;
+  text-align: center;
+}
+
+.artistCard:hover .play-button {
+  opacity: 1;
+}
+
+.artistCard .play-button:hover {
+  transform: scale(1.05);
+  background-color: #11d857;
 }
