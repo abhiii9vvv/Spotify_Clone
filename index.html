@@ -18,7 +18,9 @@
           </div>
           <ul>
             <li><img class="invert" src="/img/home.svg" alt="home" />Home</li>
-            <li><img class="invert" src="/img/search.svg" alt="search" />Search</li>
+            <li>
+              <img class="invert" src="/img/search.svg" alt="search" />Search
+            </li>
           </ul>
         </div>
 
@@ -26,6 +28,11 @@
           <div class="heading">
             <img src="/img/library.svg" alt="Library" />
             <h2>Your library</h2>
+          </div>
+          <div class="empty-library">
+            <img src="/img/musicListener.png" alt="musicListener">
+            <p>Create Your First Playlist</p>
+            <button>Create Playlist</button>
           </div>
         </div>
 
@@ -223,11 +230,40 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="playbar">
-          Playbar
+      <div class="playbar">
+        <div class="playbar-left">
+          <img width="56px" src="https://i.scdn.co/image/ab67616d0000b27383141000ee8ce3b893a0b425" alt="PlayListsong">
+          <div>
+            <h4>Finding Her</h4>
+            <p>Kushagra, Bharath, Saaheal</p>
+          </div>
+        </div>
+        <div class="playbar-center">
+          <div class="playbar-controls">
+            <img class="invert" src="img/shuffle.svg" alt="shuffle">
+            <img class="invert" src="img/prevsong.svg" alt="previous">
+            <button class="play-pause-btn">
+              <img  src="img/play.svg" alt="play">
+            </button>
+            <img class="invert" src="img/nextsong.svg" alt="next">
+            <img class="invert" src="img/repeat.svg" alt="repeat">
+          </div>
+          <div class="progress-container">
+            <span class="current-time">0:00</span>
+            <input type="range" class="progress-bar" min="0" max="100" value="30" title="Seek slider">
+            <span class="total-time">3:45</span>
+          </div>
+        </div>
+        <div class="playbar-right">
+          <img class="invert" src="/img/playlist.svg" alt="queue">
+          <img class="invert" src="/img/volume.svg" alt="volume">
+          <input type="range" class="volume-slider" min="0" max="100" value="50" title="Volume">
         </div>
       </div>
     </div>
+    
+    <script src="script.js"></script>
   </body>
 </html>
