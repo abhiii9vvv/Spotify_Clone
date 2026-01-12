@@ -98,6 +98,7 @@ body {
   padding: 10px;
   overflow-y: auto;
   height: 100vh;
+  padding-bottom: 100px;
   box-sizing: border-box;
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
@@ -162,7 +163,7 @@ body {
 .cardContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 8px;
   padding-top: 5px;
 }
 
@@ -173,7 +174,7 @@ body {
 .card {
   width: 180px;
   padding: 16px;
-  margin: 3px;
+  margin:0;
   border-radius: 8px;
   cursor: pointer;
   background-color: #333333;
@@ -338,4 +339,216 @@ body {
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
   }
+}
+
+.playbar{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background-color: #181818;
+  border-top: 1px solid #282828;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  z-index: 1000;
+}
+
+.playbar-left{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 30%;
+  min-width: 180px;
+}
+
+.playbar-left img{
+  border-radius: 4px;
+}
+
+.playbar-left h4{
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.playbar-left p{
+  font-size: 11px;
+  font-weight: 400;
+  color: #b3b3b3;
+}
+
+.playbar-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  max-width: 722px;
+  gap: 8px;
+}
+.playbar-controls{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.playbar-controls img{
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.playbar-controls img:hover{
+  opacity: 1;
+}
+
+.play-pause-btn{
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.play-pause-btn:hover{
+  transform: scale(1.05);
+}
+
+.play-pause-btn img{
+  width: 16px;
+  height: 16px;
+}
+
+.progress-container{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.current-time,.total-time{
+  font-size: 11px;
+  color: #b3b3b3;
+  min-width: 40px;
+  text-align: center;
+}
+
+.progress-bar{
+  flex: 1;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #4d4d4d;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.progress-bar::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.progress-bar::-webkit-slider-runnable-track{
+  height: 4px;
+  border-radius: 2px;
+}
+
+.playbar-right{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  width: 30%;
+  min-width: 180px;
+}
+
+.playbar-right img{
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.playbar-right img:hover{
+  opacity: 1;
+}
+
+.volume-slider{
+  width: 100px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #4d4d4d;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+
+}
+.progress-bar:hover::-webkit-slider-thumb{
+  opacity: 1;
+}
+
+.empty-library{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.empty-library img{
+  width: 60px;
+  opacity: 0.7;
+  margin-bottom: 12px;
+}
+
+.empty-library p{
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.empty-library button{
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ==========================================
+   13. PLAYING CARD HIGHLIGHT
+   ========================================== */
+
+.card.playing {
+  background-color: #1db954;
+}
+
+.card.playing .titleText,
+.card.playing .songText {
+  color: white;
 }
