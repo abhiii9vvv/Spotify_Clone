@@ -59,3 +59,40 @@
   height: 150px;
 }
 
+.gap-sm{
+  gap: 8px;
+}
+
+.gap-md{
+  gap: 12px;
+}
+.gap-lg{
+  gap: 16px;
+}
+
+.w-30{
+  width: 30%;
+}
+.w-40{
+  width: 40%;
+}
+
+.flex-col{
+  flex-direction: column;
+}
+
+.justify-between{
+  justify-content: space-between;
+}
+
+.justify-end{
+  justify-content: flex-end;
+}
+
+.fixed{
+  position: fixed;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
