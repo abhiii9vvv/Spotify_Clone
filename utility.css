@@ -43,7 +43,6 @@
   padding-top: 5px;
   font-size: 15px;
   font-weight: 500;
-  font-family: "CircularSp", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .songText {
@@ -51,7 +50,6 @@
   font-size: 12px;
   font-weight: 400;
   color: #b3b3b3;
-  font-family: "CircularSp", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .songImg {
