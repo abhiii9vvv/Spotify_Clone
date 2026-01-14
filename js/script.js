@@ -132,6 +132,10 @@ function togglePlayPause() {
   }
 }
 
+// ============================================
+// NEXT/PREVIOUS SONG NAVIGATION
+// ============================================
+
 function nextSong() {
   if (isShuffled) {
     currentSongIndex = Math.floor(Math.random() * songs.length);
