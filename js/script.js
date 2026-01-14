@@ -159,6 +159,10 @@ function prevSong() {
   playSong();
 }
 
+// ============================================
+// PROGRESS BAR & TIME FUNCTIONS
+// ============================================
+
 function updateProgress() {
   if (audio.duration) {
     const progressPercent = (audio.currentTime / audio.duration) * 100;
