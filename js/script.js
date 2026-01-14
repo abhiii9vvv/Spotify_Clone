@@ -4,6 +4,10 @@ let isPlaying = false;
 let isShuffled = false;
 let isRepeating = false;
 
+// ============================================
+// DOM ELEMENT SELECTORS
+// ============================================
+
 // Playbar Controls - Saare buttons select karo
 const playPauseBtn = document.querySelector(".play-pause-btn");
 const nextBtn = document.querySelector(".next-btn");
