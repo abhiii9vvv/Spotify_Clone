@@ -29,7 +29,12 @@ const totalTimeEl = document.querySelector(".total-time");
 const volumeSlider = document.querySelector(".volume-slider");
 const volumeIcon = document.querySelector(".volume-icon");
 
+// Audio Object - Ye actual audio play karega
 const audio = new Audio();
+
+// ============================================
+// FETCH & RENDER FUNCTIONS
+// ============================================
 
 async function fetchSongs() {
   try {
