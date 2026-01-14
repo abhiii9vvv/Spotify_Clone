@@ -76,6 +76,10 @@ function renderSongCards() {
   });
 }
 
+// ============================================
+// SONG LOADING & HIGHLIGHTING
+// ============================================
+
 function loadSong(songIndex) {
   if (songs.length === 0) return;
 
