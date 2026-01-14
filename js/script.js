@@ -273,6 +273,10 @@ audio.addEventListener('timeupdate',updateProgress);
 audio.addEventListener('loadmetadata',setTotalTime);
 audio.addEventListener('ended',handleSongEnd);
 
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+
 document.addEventListener('keydown', (e) => {
     switch(e.code) {
         case 'Space':
@@ -282,12 +286,14 @@ document.addEventListener('keydown', (e) => {
     }
 })
 
+// ============================================
+// INITIALIZATION
+// ============================================
+
 document.addEventListener('DOMContentLoaded',() => {
     fetchSongs();
 
     audio.volume = volumeSlider.value / 100;
 
-    // attachCardListeners();
-
-    console.log("All Set")
+    console.log("Spotify Clone Ready! 🎵")
 })
