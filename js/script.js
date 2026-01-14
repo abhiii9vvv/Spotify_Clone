@@ -108,6 +108,10 @@ function highlightCurrentCard() {
   }
 }
 
+// ============================================
+// PLAY/PAUSE CONTROLS
+// ============================================
+
 function playSong() {
   audio.play();
   isPlaying = true;
