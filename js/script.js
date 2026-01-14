@@ -234,6 +234,10 @@ function toggleRepeat() {
   }
 }
 
+// ============================================
+// SONG END HANDLER
+// ============================================
+
 function handleSongEnd() {
     if (isRepeating) {
         audio.currentTime = 0;
@@ -242,6 +246,10 @@ function handleSongEnd() {
         nextSong();
     }
 }
+
+// ============================================
+// EVENT LISTENERS
+// ============================================
 
 playPauseBtn.addEventListener('click', togglePlayPause);
 nextBtn.addEventListener('click',nextSong);
