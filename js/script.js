@@ -204,6 +204,10 @@ function setVolume() {
   }
 }
 
+// ============================================
+// SHUFFLE & REPEAT TOGGLES
+// ============================================
+
 function toggleShuffle() {
   isShuffled = !isShuffled;
 
