@@ -190,6 +190,10 @@ function setTotalTime() {
   }
 }
 
+// ============================================
+// VOLUME CONTROLS
+// ============================================
+
 function setVolume() {
   audio.volume = volumeSlider.value / 100;
 
