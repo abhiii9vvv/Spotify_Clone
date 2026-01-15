@@ -569,7 +569,7 @@ body {
   align-items: center;
   z-index: 9999;
   backdrop-filter: blur(5px);
-  transition: opacity 0.3 ease;
+  transition: opacity 0.3s ease;
 }
 
 .loading-spinner {
@@ -583,70 +583,132 @@ body {
 }
 
 /* ==========================================
-   15. TOAST NOTIFICATIONS
+   15. TOAST NOTIFICATIONS - MODERN DESIGN
    ========================================== */
 
 .toast {
   position: fixed;
-  bottom: 100px;
-  right: 20px;
-  background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
+  bottom: 120px;
+  right: 24px;
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
   padding: 16px 20px;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(29, 185, 84, 0.4);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   z-index: 9998;
-  min-width: 300px;
-  animation: slideIn 0.3 ease-out;
-  transition: opacity 0.3s ease;
+  min-width: 340px;
+  max-width: 420px;
+  animation: toastSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: right center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .toast.hidden {
-  display: none;
+  animation: toastSlideOut 0.3s cubic-bezier(0.4, 0, 1, 1) forwards;
+  pointer-events: none;
 }
 
 .toast-icon {
-  width: 40px;
-  height: 40px;
-  filter: invert(1);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.toast-icon img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.toast:hover .toast-icon {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .toast-content {
   flex: 1;
+  min-width: 0;
 }
 
 .toast-title {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
-  margin: 0 0 4px 0;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.2px;
+  line-height: 1.2;
 }
 
 .toast-message {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
   margin: 0;
-  opacity: 0.9;
+  opacity: 0.85;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateX(400px);
+/* Success Toast - Spotify Green */
+.toast.success {
+  border-left: 3px solid #1db954;
+}
+
+.toast.success .toast-icon {
+  background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
+  box-shadow: 0 4px 16px rgba(29, 185, 84, 0.3);
+}
+
+/* Error Toast - Red */
+.toast.error {
+  border-left: 3px solid #ff4444;
+}
+
+.toast.error .toast-icon {
+  background: linear-gradient(135deg, #e22134 0%, #ff4444 100%);
+  box-shadow: 0 4px 16px rgba(226, 33, 52, 0.3);
+}
+
+/* Animations */
+@keyframes toastSlideIn {
+  0% {
+    transform: translateX(450px) scale(0.9);
     opacity: 0;
   }
-  to {
-    transform: translateX(0);
+  100% {
+    transform: translateX(0) scale(1);
     opacity: 1;
   }
 }
 
-.toast.error {
-  background: linear-gradient(135deg, #e22134 0%, #ff4444 100%);
-  box-shadow: 0 8px 24px rgba(226, 33, 52, 0.4);
+@keyframes toastSlideOut {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(450px) scale(0.9);
+    opacity: 0;
+  }
 }
 
-.toast.success {
-  background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
+/* Hover Effect */
+.toast:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
