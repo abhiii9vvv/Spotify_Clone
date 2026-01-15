@@ -38,7 +38,7 @@ const audio = new Audio();
 
 async function fetchSongs() {
   try {
-    const response = await fetch('/data/songs.json');
+    const response = await fetch("/data/songs.json");
     songs = await response.json();
     console.log(`🎵 Loaded ${songs.length} songs`);
 
@@ -115,13 +115,13 @@ function highlightCurrentCard() {
 function playSong() {
   audio.play();
   isPlaying = true;
-  playPauseBtn.querySelector('img').src = "assets/icons/pause.svg";
+  playPauseBtn.querySelector("img").src = "assets/icons/pause.svg";
 }
 
 function pauseSong() {
   audio.pause();
   isPlaying = false;
-  playPauseBtn.querySelector('img').src = "assets/icons/play.svg";
+  playPauseBtn.querySelector("img").src = "assets/icons/play.svg";
 }
 
 function togglePlayPause() {
@@ -226,11 +226,10 @@ function toggleRepeat() {
 
   if (isRepeating) {
     repeatBtn.style.opacity = "1";
-    repeatBtn.style.filter =
-      "invert(1) sepia(1) saturate(5) hue-rotate(80deg)";
+    repeatBtn.style.filter = "invert(1) sepia(1) saturate(5) hue-rotate(80deg)";
   } else {
-    repeatBtn.style.opacity= '0.7';
-    repeatBtn.style.filter = 'invert(1)';
+    repeatBtn.style.opacity = "0.7";
+    repeatBtn.style.filter = "invert(1)";
   }
 }
 
@@ -239,61 +238,137 @@ function toggleRepeat() {
 // ============================================
 
 function handleSongEnd() {
-    if (isRepeating) {
-        audio.currentTime = 0;
-        playSong();
-    } else{
-        nextSong();
-    }
+  if (isRepeating) {
+    audio.currentTime = 0;
+    playSong();
+  } else {
+    nextSong();
+  }
 }
 
 // ============================================
 // EVENT LISTENERS
 // ============================================
 
-playPauseBtn.addEventListener('click', togglePlayPause);
-nextBtn.addEventListener('click',nextSong);
-prevBtn.addEventListener('click',prevSong);
-shuffleBtn.addEventListener('click', toggleShuffle);
-repeatBtn.addEventListener('click',toggleRepeat);
-progressBar.addEventListener('click',setProgress);
-volumeSlider.addEventListener('click',setVolume);
+playPauseBtn.addEventListener("click", togglePlayPause);
+nextBtn.addEventListener("click", nextSong);
+prevBtn.addEventListener("click", prevSong);
+shuffleBtn.addEventListener("click", toggleShuffle);
+repeatBtn.addEventListener("click", toggleRepeat);
+progressBar.addEventListener("input", setProgress);
+volumeSlider.addEventListener("input", setVolume);
 
-volumeIcon.addEventListener('click',() => {
-    if (volumeSlider.value > 0) {
-        volumeSlider.dataset.prevVolume =  volumeSlider.value;
-        volumeSlider.value = 0;
-    } else {
-        volumeSlider.value = volumeSlider.dataset.prevVolume || 50;
-    }
-    setVolume();
+volumeIcon.addEventListener("click", () => {
+  if (volumeSlider.value > 0) {
+    volumeSlider.dataset.prevVolume = volumeSlider.value;
+    volumeSlider.value = 0;
+  } else {
+    volumeSlider.value = volumeSlider.dataset.prevVolume || 50;
+  }
+  setVolume();
 });
 
-audio.addEventListener('timeupdate',updateProgress);
-audio.addEventListener('loadmetadata',setTotalTime);
-audio.addEventListener('ended',handleSongEnd);
+audio.addEventListener("timeupdate", updateProgress);
+audio.addEventListener("loadmetadata", setTotalTime);
+audio.addEventListener("ended", handleSongEnd);
 
 // ============================================
 // KEYBOARD SHORTCUTS
 // ============================================
 
-document.addEventListener('keydown', (e) => {
-    switch(e.code) {
-        case 'Space':
-            e.preventDefault();
-            togglePlayPause();
-            break;
-    }
-})
+document.addEventListener("keydown", (e) => {
+  switch (e.code) {
+    case "Space":
+      e.preventDefault();
+      togglePlayPause();
+      break;
+    case "ArrowRight":
+      nextSong();
+      break;
+
+    case "ArrowLeft":
+      prevSong();
+      break;
+
+    case "ArrowUp":
+      e.preventDefault();
+      volumeSlider.value = Math.min(100, parseInt(volumeSlider.value) + 10);
+      setVolume();
+      break;
+
+    case "ArrowDown":
+      e.preventDefault();
+      volumeSlider.value = Math.max(0, parseInt(volumeSlider.value) - 10);
+      setVolume();
+      break;
+
+    case "KeyM":
+      volumeIcon.click();
+      break;
+
+    case "KeyS":
+      toggleShuffle();
+      break;
+
+    case "KeyR":
+      toggleRepeat();
+      break;
+  }
+});
+
+function attachCardListeners() {
+  const existingCard = document.querySelectorAll(".card");
+  existingCard.forEach((card, index) => {
+    card.setAttribute("data-song-index", index);
+    card.addEventListener("click", () => {
+      if (index < songs.length) {
+        loadSong(index);
+        playSong();
+      }
+    });
+  });
+}
+
+const cardContainer = document.querySelector(".cardContainer");
+
+function renderSongCards() {
+  songs.forEach((song, index) => {
+    const existingCard = document.querySelector(`[data-song-index="${index}"]`);
+    if (existingCard) return;
+
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.setAttribute("data-song-index", index);
+
+    card.innerHTML = `
+      <div class="image-container">
+        <img class="songImg" src="${song.image}" alt="${song.name}" onerror="this.src='assets/images/cover.jpg'">
+        <div class="play-button">
+          <img src="assets/icons/play.svg" alt="play button icon">
+        </div>
+      </div>
+      <h2 class="titleText">${song.name}</h2>
+      <p class="songText">${song.artist}</p>
+    `;
+
+    card.addEventListener("click",()=>{
+      loadSong(index);
+      playSong();
+    })
+
+    cardContainer.appendChild(card);
+  });
+}
 
 // ============================================
 // INITIALIZATION
 // ============================================
 
-document.addEventListener('DOMContentLoaded',() => {
-    fetchSongs();
+document.addEventListener("DOMContentLoaded", () => {
+  attachCardListeners();
+  fetchSongs();
 
-    audio.volume = volumeSlider.value / 100;
+  audio.volume = volumeSlider.value / 100;
 
-    console.log("Spotify Clone Ready! 🎵")
-})
+  console.log("Spotify Clone Ready! 🎵");
+});
