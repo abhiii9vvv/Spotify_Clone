@@ -29,6 +29,14 @@ const totalTimeEl = document.querySelector(".total-time");
 const volumeSlider = document.querySelector(".volume-slider");
 const volumeIcon = document.querySelector(".volume-icon");
 
+//loading spinner
+const loadingOverlay = document.querySelector(".loading-overlay");
+
+//toast Notification
+const toast = document.querySelector(".toast");
+const toastTitle = document.querySelector(".toast-title");
+const toastMessage = document.querySelector(".toast-message");
+
 // Audio Object - Ye actual audio play karega
 const audio = new Audio();
 
@@ -38,14 +46,34 @@ const audio = new Audio();
 
 async function fetchSongs() {
   try {
+    showLoading();
     const response = await fetch("/data/songs.json");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     songs = await response.json();
     console.log(`🎵 Loaded ${songs.length} songs`);
 
     renderSongCards();
     loadSong(0);
+    hideLoading();
+
+    showToast(
+      "Library Loaded",
+      `${songs.length} songs ready to play`,
+      "success"
+    );
   } catch (error) {
     console.log("Error Loading Songs.", error);
+    hideLoading();
+
+    showToast(
+      "Load Failed",
+      "Could not load songs. Check Your Connection...",
+      "error"
+    );
   }
 }
 
@@ -113,9 +141,31 @@ function highlightCurrentCard() {
 // ============================================
 
 function playSong() {
-  audio.play();
-  isPlaying = true;
-  playPauseBtn.querySelector("img").src = "assets/icons/pause.svg";
+  showLoading();
+
+  audio
+    .play()
+    .then(() => {
+      isPlaying = true;
+      playPauseBtn.querySelector("img").src = "assets/icons/pause.svg";
+      hideLoading(); // ✅ Hide after successful play
+
+      showToast(
+        "Now Playing",
+        `${songTitle.textContent}-${songArtist.textContent}`,
+        "success"
+      );
+    })
+    .catch((error) => {
+      console.error("Playback error:", error);
+      hideLoading(); // ✅ Hide on error too
+
+      showToast(
+        "Playback Error",
+        "Failed to play song. Please try again...",
+        "error"
+      );
+    });
 }
 
 function pauseSong() {
@@ -257,6 +307,10 @@ shuffleBtn.addEventListener("click", toggleShuffle);
 repeatBtn.addEventListener("click", toggleRepeat);
 progressBar.addEventListener("input", setProgress);
 volumeSlider.addEventListener("input", setVolume);
+audio.addEventListener("loadstart", showLoading);
+audio.addEventListener("canplay", hideLoading);
+audio.addEventListener("waiting", showLoading);
+audio.addEventListener("playing", hideLoading);
 
 volumeIcon.addEventListener("click", () => {
   if (volumeSlider.value > 0) {
@@ -351,13 +405,40 @@ function renderSongCards() {
       <p class="songText">${song.artist}</p>
     `;
 
-    card.addEventListener("click",()=>{
+    card.addEventListener("click", () => {
       loadSong(index);
       playSong();
-    })
+    });
 
     cardContainer.appendChild(card);
   });
+}
+
+// ============================================
+// LOADING STATES
+// ============================================
+
+function showLoading() {
+  loadingOverlay.classList.remove("hidden");
+}
+
+function hideLoading() {
+  loadingOverlay.classList.add("hidden");
+}
+
+function showToast(title, message, type = "success") {
+  //set Content
+  toastTitle.textContent = title;
+  toastMessage.textContent = message;
+
+  toast.classList.remove("sucess", "error");
+  toast.classList.add(type);
+
+  toast.classList.remove("hidden");
+
+  setTimeout(() => {
+    toast.classList.add("hidden");
+  }, 3000);
 }
 
 // ============================================

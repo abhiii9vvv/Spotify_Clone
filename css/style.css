@@ -174,7 +174,7 @@ body {
 .card {
   width: 180px;
   padding: 16px;
-  margin:0;
+  margin: 0;
   border-radius: 8px;
   cursor: pointer;
   background-color: #333333;
@@ -341,7 +341,7 @@ body {
   }
 }
 
-.playbar{
+.playbar {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -356,7 +356,7 @@ body {
   z-index: 1000;
 }
 
-.playbar-left{
+.playbar-left {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -364,24 +364,24 @@ body {
   min-width: 180px;
 }
 
-.playbar-left img{
+.playbar-left img {
   border-radius: 4px;
 }
 
-.playbar-left h4{
+.playbar-left h4 {
   font-size: 14px;
   font-weight: 500;
   color: white;
   margin-bottom: 4px;
 }
 
-.playbar-left p{
+.playbar-left p {
   font-size: 11px;
   font-weight: 400;
   color: #b3b3b3;
 }
 
-.playbar-center{
+.playbar-center {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -389,13 +389,13 @@ body {
   max-width: 722px;
   gap: 8px;
 }
-.playbar-controls{
+.playbar-controls {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.playbar-controls img{
+.playbar-controls img {
   width: 16px;
   height: 16px;
   cursor: pointer;
@@ -403,11 +403,11 @@ body {
   transition: opacity 0.2s;
 }
 
-.playbar-controls img:hover{
+.playbar-controls img:hover {
   opacity: 1;
 }
 
-.play-pause-btn{
+.play-pause-btn {
   background-color: white;
   border: none;
   border-radius: 50%;
@@ -419,30 +419,31 @@ body {
   cursor: pointer;
   transition: transform 0.1s;
 }
-.play-pause-btn:hover{
+.play-pause-btn:hover {
   transform: scale(1.05);
 }
 
-.play-pause-btn img{
+.play-pause-btn img {
   width: 16px;
   height: 16px;
 }
 
-.progress-container{
+.progress-container {
   display: flex;
   align-items: center;
   gap: 8px;
   width: 100%;
 }
 
-.current-time,.total-time{
+.current-time,
+.total-time {
   font-size: 11px;
   color: #b3b3b3;
   min-width: 40px;
   text-align: center;
 }
 
-.progress-bar{
+.progress-bar {
   flex: 1;
   height: 4px;
   -webkit-appearance: none;
@@ -452,7 +453,7 @@ body {
   cursor: pointer;
 }
 
-.progress-bar::-webkit-slider-thumb{
+.progress-bar::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 12px;
   height: 12px;
@@ -462,12 +463,12 @@ body {
   transition: opacity 0.2s;
 }
 
-.progress-bar::-webkit-slider-runnable-track{
+.progress-bar::-webkit-slider-runnable-track {
   height: 4px;
   border-radius: 2px;
 }
 
-.playbar-right{
+.playbar-right {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -476,7 +477,7 @@ body {
   min-width: 180px;
 }
 
-.playbar-right img{
+.playbar-right img {
   width: 16px;
   height: 16px;
   cursor: pointer;
@@ -484,11 +485,11 @@ body {
   transition: opacity 0.2s;
 }
 
-.playbar-right img:hover{
+.playbar-right img:hover {
   opacity: 1;
 }
 
-.volume-slider{
+.volume-slider {
   width: 100px;
   height: 4px;
   -webkit-appearance: none;
@@ -498,19 +499,18 @@ body {
   cursor: pointer;
 }
 
-.volume-slider::-webkit-slider-thumb{
+.volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 12px;
   height: 12px;
   background: white;
   border-radius: 50%;
-
 }
-.progress-bar:hover::-webkit-slider-thumb{
+.progress-bar:hover::-webkit-slider-thumb {
   opacity: 1;
 }
 
-.empty-library{
+.empty-library {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -518,19 +518,19 @@ body {
   text-align: center;
 }
 
-.empty-library img{
+.empty-library img {
   width: 60px;
   opacity: 0.7;
   margin-bottom: 12px;
 }
 
-.empty-library p{
+.empty-library p {
   font-size: 14px;
   font-weight: 400;
   margin-bottom: 16px;
 }
 
-.empty-library button{
+.empty-library button {
   background-color: white;
   color: black;
   border: none;
@@ -551,4 +551,102 @@ body {
 .card.playing .titleText,
 .card.playing .songText {
   color: white;
+}
+
+/* ==========================================
+   14. LOADING SPINNER
+   ========================================== */
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+  transition: opacity 0.3 ease;
+}
+
+.loading-spinner {
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
+
+.loading-overlay.hidden {
+  display: none;
+}
+
+/* ==========================================
+   15. TOAST NOTIFICATIONS
+   ========================================== */
+
+.toast {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(29, 185, 84, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 9998;
+  min-width: 300px;
+  animation: slideIn 0.3 ease-out;
+  transition: opacity 0.3s ease;
+}
+
+.toast.hidden {
+  display: none;
+}
+
+.toast-icon {
+  width: 40px;
+  height: 40px;
+  filter: invert(1);
+}
+
+.toast-content {
+  flex: 1;
+}
+
+.toast-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.toast-message {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.9;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.toast.error {
+  background: linear-gradient(135deg, #e22134 0%, #ff4444 100%);
+  box-shadow: 0 8px 24px rgba(226, 33, 52, 0.4);
+}
+
+.toast.success {
+  background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
 }
