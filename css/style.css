@@ -596,9 +596,7 @@ body {
   color: white;
   padding: 16px 20px;
   border-radius: 16px;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.05),
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05),
     inset 0 0 0 1px rgba(255, 255, 255, 0.03);
   display: flex;
   align-items: center;
@@ -707,8 +705,246 @@ body {
 /* Hover Effect */
 .toast:hover {
   transform: translateY(-2px);
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.5),
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(255, 255, 255, 0.08),
     inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
+
+/* ==========================================
+   16. PLAYLIST MODAL
+   ========================================== */
+
+.playlist-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.playlist-modal.hidden {
+  display: none;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  position: relative;
+  background-color: #282828;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 90%;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.modal-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.close-modal:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.close-modal img {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+}
+
+.modal-body {
+  margin-bottom: 24px;
+}
+
+.playlist-name-input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  background-color: #3e3e3e;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  color: white;
+  font-family: inherit;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.playlist-name-input:focus {
+  outline: none;
+  border-color: #1db954;
+  background: #4a4a4a;
+}
+
+.input-hint {
+  font-size: 13px;
+  color: #b3b3b3;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.btn-cancel,
+.btn-create {
+  padding: 12px 32px;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  border-radius: 500px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: white;
+  border: 2px solid #535353;
+}
+
+.btn-cancel:hover {
+  border-color: white;
+  transform: scale(1.04);
+}
+
+.btn-create {
+  background-color: #1db954;
+  color: white;
+}
+
+.btn-create:hover {
+  background-color: #1ed760;
+  transform: scale(1.04);
+}
+
+.btn-create:disabled {
+  background: #535353;
+  cursor: not-allowed;
+  transform: scale(1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ==========================================
+   17. PLAYLISTS DISPLAY
+   ========================================== */
+
+.playlists-container {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.playlist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.playlist-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.playlist-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #1db954, #1ed760);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.playlist-icon img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+}
+
+.playlist-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.playlist-info h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlist-info p {
+  font-size: 12px;
+  font-weight: 400;
+  color: #b3b3b3;
+  margin: 0;
+}
+
+/* 
+==================================================================
+Playlist Modal
+================================================================== */
+

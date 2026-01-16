@@ -42,9 +42,11 @@
           <div class="empty-library">
             <img src="assets/images/musicListener.png" alt="musicListener" />
             <p>Create Your First Playlist</p>
-            <button>Create Playlist</button>
+            <button class="create-playlist-btn">Create Playlist</button>
           </div>
         </div>
+
+        <div class="playlists-container"></div>
 
         <footer>
           <ul>
@@ -257,7 +259,11 @@
         </div>
         <div class="playbar-center">
           <div class="playbar-controls">
-            <img class="shuffle-btn invert" src="assets/icons/shuffle.svg" alt="shuffle" />
+            <img
+              class="shuffle-btn invert"
+              src="assets/icons/shuffle.svg"
+              alt="shuffle"
+            />
             <img
               class="prev-btn invert"
               src="assets/icons/prevsong.svg"
@@ -266,8 +272,16 @@
             <button class="play-pause-btn">
               <img src="assets/icons/play.svg" alt="play" />
             </button>
-            <img class="next-btn invert" src="assets/icons/nextsong.svg" alt="next" />
-            <img class="repeat-btn invert" src="assets/icons/repeat.svg" alt="repeat" />
+            <img
+              class="next-btn invert"
+              src="assets/icons/nextsong.svg"
+              alt="next"
+            />
+            <img
+              class="repeat-btn invert"
+              src="assets/icons/repeat.svg"
+              alt="repeat"
+            />
           </div>
           <div class="progress-container">
             <span class="current-time">0:00</span>
@@ -284,7 +298,11 @@
         </div>
         <div class="playbar-right">
           <img class="invert" src="assets/icons/playlist.svg" alt="queue" />
-          <img class="volume-icon invert" src="assets/icons/volume.svg" alt="volume" />
+          <img
+            class="volume-icon invert"
+            src="assets/icons/volume.svg"
+            alt="volume"
+          />
           <input
             type="range"
             class="volume-slider"
@@ -297,17 +315,40 @@
       </div>
 
       <div class="loading-overlay hidden">
-        <img src="assets/images/loadingSpinner.gif" class="loading-spinner" alt="loading....">
+        <img
+          src="assets/images/loadingSpinner.gif"
+          class="loading-spinner"
+          alt="loading...."
+        />
       </div>
 
       <div class="toast hidden">
-        <img src="assets/icons/music.svg" alt="icon" class="toast-icon">
+        <img src="assets/icons/music.svg" alt="icon" class="toast-icon" />
         <div class="toast-content">
           <h4 class="toast-title">Now Playing</h4>
           <p class="toast-message">Song Name</p>
         </div>
       </div>
 
+      <div class="playlist-modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Create Playlist</h2>
+            <button class="close-modal" title="Close modal">
+              <img src="assets/icons/close.svg" alt="close" />
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="text" class="playlist-name-input" placeholder="My Playlist #1" maxlength="50">
+            <p class="input-hint">Give your playlist a catchy name</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn-cancel">Cancel</button>
+            <button class="btn-create">Create</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="js/script.js"></script>

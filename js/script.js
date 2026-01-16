@@ -37,8 +37,78 @@ const toast = document.querySelector(".toast");
 const toastTitle = document.querySelector(".toast-title");
 const toastMessage = document.querySelector(".toast-message");
 
+//playlist elements
+
+const createPlaylistBtn = document.querySelector(".create-playlist-btn");
+const playlistModal = document.querySelector(".playlist-modal");
+const closeModalBtn = document.querySelector(".close-modal");
+const modalOverlay = document.querySelector(".modal-overlay");
+const btnCancel = document.querySelector(".btn-cancel");
+const btnCreate = document.querySelector(".btn-create");
+const playlistsContainer = document.querySelector(".playlists-container");
+const emptyLibrary = document.querySelector(".empty-library");
+const playlistNameInput = document.querySelector(".playlist-name-input");
+
 // Audio Object - Ye actual audio play karega
 const audio = new Audio();
+
+// =====================
+// playlist data storage
+// =====================
+let playlists = [];
+
+function loadPlaylists() {
+  const saved = localStorage.getItem("spotifyPlaylists");
+
+  if (saved) {
+    playlists = JSON.parse(saved);
+  }
+}
+
+function savePlaylists() {
+  localStorage.setItem("spotifyPlaylists", JSON.stringify(playlists));
+}
+
+// =====================================
+//       Playlist Modal Function
+// =====================================
+
+function openPlaylistModal() {
+  playlistModal.classList.remove("hidden");
+  playlistNameInput.value = "";
+  playlistNameInput.focus();
+}
+
+function closePlaylistModal() {
+  playlistModal.classList.add("hidden");
+  playlistModal.value = "";
+}
+
+function createPlaylist() {
+  const name = playlistNameInput.value.trim();
+
+  if (!name) {
+    showToast("Error", "Please enter playlist name", "error");
+    return;
+  }
+
+  const playlist = {
+    id: Date.now(),
+    name: name,
+    songs: [],
+    createdAt: Date.now(),
+  };
+
+  playlist.push(playlist);
+  savePlaylists();
+  closePlaylistModal();
+  showToast("success","Playlist created!","success");
+  renderPlaylists();
+
+  if (playlist.length>0){
+    emptyLibrary.classList.add("hidden");
+  }
+}
 
 // ============================================
 // FETCH & RENDER FUNCTIONS
